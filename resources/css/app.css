@@ -1,0 +1,117 @@
+.App {
+    text-align: center;
+  }
+  
+  .App-header {
+    background-color: #343a40;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+  }
+  
+  .spinner {
+    height: 80px;
+    margin: auto;
+  }
+  
+  .App-intro {
+    font-size: large;
+  }
+  
+  /* new css for movie component */
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .moviesShows {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-top: 50px
+  }
+
+  .App-header h2 {
+    margin: 0;
+  }
+  
+  .movieShow {
+    padding: 5px 25px 10px 25px;
+    max-width: 25%;
+  }
+  
+  .movieShowDetail {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 50px;
+  }
+
+  .movieShowDetailText{
+    text-align: left;
+    margin-left: 30px;
+  }
+
+  .errorMessage {
+    margin: auto;
+    font-weight: bold;
+    color: rgb(161, 15, 15);
+  }
+  
+  
+  .search {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  
+  input[type="submit"] {
+    padding: 5px;
+    background-color: transparent;
+    color: #343a40;
+    border: 1px solid #343a40;
+    width: 80px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  
+  input[type="submit"]:hover {
+    background-color: #282c34;
+    color: antiquewhite;
+  }
+  
+  
+  .search > input[type="text"]{
+    width: 40%;
+    min-width: 170px;
+  }
+  
+  @media screen and (min-width: 694px) and (max-width: 915px) {
+    .movie {
+      max-width: 33%;
+    }
+  }
+  
+  @media screen and (min-width: 652px) and (max-width: 693px) {
+    .movie {
+      max-width: 50%;
+    }
+  }
+  
+  
+  @media screen and (max-width: 651px) {
+    .movie {
+      max-width: 100%;
+      margin: auto;
+    }
+  }
