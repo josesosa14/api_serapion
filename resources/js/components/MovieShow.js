@@ -20,7 +20,6 @@ const MovieShow = (props) => {
       </div>
       <p>({props.movieShow.type})</p>
       <p>({props.movieShow.year})</p>
-      {/* <a href={`/search?id=${movieShow.imdbID}`}>Users Page</a> */}
       <Link to={`/${props.movieShow.imdbID}`} onClick={()=> props.setCurrentMovieShows([])}>Show More</Link>
     </div>
   );

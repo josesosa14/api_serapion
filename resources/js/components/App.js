@@ -11,7 +11,6 @@ import {
     Route,
 } from "react-router-dom";
 
-
 const App = () => {
     const [loading, setLoading] = useState(false);
     const [currentMovieShows, setCurrentMovieShows] = useState([]);
@@ -19,7 +18,6 @@ const App = () => {
 
     const search = searchValue => {
         window.history.replaceState({}, document.title, "/");
-        
         setErrorMessage(null);
         setLoading(true);
         fetch(`/api/search/${searchValue}`).then(response => response.json())

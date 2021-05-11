@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  title: "Serapion Movie/Shows"
+  version: 1.0.0
+  description: "Application developed in laravel8 for back-end, has 2 endpoins describe later. API connects with a local database (mysql), the data connection are in .env. To connect with the api provider uses guzzle and the URL and APIKEY are in .env too. You have to run `php artisan migrate` and start the server. React for front-end in the same application of laravel you have to run `npm run watch`"
+
+paths:
+  /:
+    get:
+      summary: "Welcome to app"
+      responses:
+        200:
+          description: "Search page"
+  /search/{title}:
+    get:
+      summary: "Find Movies and Shows"
+      description: "Returns a list of Movies and Shows"
+      operationId: "getByTitle"
+      parameters:
+        - in: "path"
+          name: "title"
+          required: true
+          schema:
+            type: "string"
+          description: "title of movie or show"
+      responses:
+        200:
+          description: "Éxito"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: '#/components/schemas/MovieShow'
+        400:
+          description: "Missing params"
+        404:
+          description: "Movie or Shows not found."
+        500:
+          description: "Error: Internal server error."
+  /detail/{imdbID}:
+    get:
+      summary: "Return movie or show detail"
+      parameters:
+        - in: "path"
+          name: "imdbID"
+          required: true
+          schema:
+            type: "string"
+          description: "ID's movies or show from api provider"
+      responses:
+        200:
+          description: "Éxito"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieShow'
+        400:
+          description: "Missing parameters"
+        404:
+          description: "Error: movie or show not found"
+        500:
+          description: "Error: Internal server error."
+components:
+  schemas:
+    MovieShow:
+      properties:
+        title:
+          type: "string"
+          description: "title of movie or show"
+          example: "batman"
+        year:
+          type: "string"
+          description: "Year of movie or show"
+          example: '2006'
+        imdbID:
+          type: "string"
+          description: "Id of movie or show in api provider"
+          example: "tt0372784"
+        poster:
+          type: "string"
+          description: "Image of movie or show"
+          example: "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+        type:
+          type: "string"
+          description: "type of item, movie or serie"
+          example: "movie"
+          
+    

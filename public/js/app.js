@@ -2155,6 +2155,11 @@ var Detail = function Detail() {
       currentDetail = _useState4[0],
       setCurrentDetail = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      loading = _useState6[0],
+      setLoading = _useState6[1];
+
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useParams)(),
       id = _useParams.id;
 
@@ -2164,20 +2169,28 @@ var Detail = function Detail() {
 
   var detailFill = function detailFill(id) {
     if (id != null) {
+      setErrorMessage(null);
+      setLoading(true);
       fetch("/api/detail/".concat(id)).then(function (response) {
         return response.json();
       }).then(function (jsonResponse) {
         if (jsonResponse.Error) {
           setErrorMessage(jsonResponse.Error);
+          setLoading(false);
         } else {
           setCurrentDetail(jsonResponse);
+          setLoading(false);
         }
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   };
 
   var poster = currentDetail.poster === "N/A" ? NO_PICTURE : currentDetail.poster;
-  return errorMessage ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  return loading && !errorMessage ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: "loading..."
+  }) : errorMessage ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "errorMessage",
     children: errorMessage
   }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -6855,7 +6868,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".App {\n    text-align: center;\n  }\n  \n  .App-header {\n    background-color: #343a40;\n    height: 70px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    font-size: calc(10px + 2vmin);\n    color: white;\n    padding: 20px;\n    cursor: pointer;\n  }\n  \n  .spinner {\n    height: 80px;\n    margin: auto;\n  }\n  \n  .App-intro {\n    font-size: large;\n  }\n  \n  /* new css for movie component */\n  \n  * {\n    box-sizing: border-box;\n  }\n  \n  .moviesShows {\n    display: flex;\n    flex-wrap: wrap;\n    flex-direction: row;\n  }\n\n\n  \n  .App-header h2 {\n    margin: 0;\n  }\n  \n  .movieShow {\n    padding: 5px 25px 10px 25px;\n    max-width: 25%;\n  }\n  \n  .movieShowDetail {\n    display: flex;\n    align-items: center;\n    margin: 0 auto;\n  }\n\n  .movieShowDetailText{\n    text-align: left;\n    margin-left: 30px;\n  }\n\n  .errorMessage {\n    margin: auto;\n    font-weight: bold;\n    color: rgb(161, 15, 15);\n  }\n  \n  \n  .search {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    justify-content: center;\n    margin-top: 10px;\n  }\n  \n  \n  input[type=\"submit\"] {\n    padding: 5px;\n    background-color: transparent;\n    color: #343a40;\n    border: 1px solid #343a40;\n    width: 80px;\n    margin-left: 5px;\n    cursor: pointer;\n  }\n  \n  \n  input[type=\"submit\"]:hover {\n    background-color: #282c34;\n    color: antiquewhite;\n  }\n  \n  \n  .search > input[type=\"text\"]{\n    width: 40%;\n    min-width: 170px;\n  }\n  \n  @media screen and (min-width: 694px) and (max-width: 915px) {\n    .movie {\n      max-width: 33%;\n    }\n  }\n  \n  @media screen and (min-width: 652px) and (max-width: 693px) {\n    .movie {\n      max-width: 50%;\n    }\n  }\n  \n  \n  @media screen and (max-width: 651px) {\n    .movie {\n      max-width: 100%;\n      margin: auto;\n    }\n  }", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".App {\n    text-align: center;\n  }\n  \n  .App-header {\n    background-color: #343a40;\n    height: 70px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    font-size: calc(10px + 2vmin);\n    color: white;\n    padding: 20px;\n    cursor: pointer;\n  }\n  \n  .spinner {\n    height: 80px;\n    margin: auto;\n  }\n  \n  .App-intro {\n    font-size: large;\n  }\n  \n  /* new css for movie component */\n  \n  * {\n    box-sizing: border-box;\n  }\n  \n  .moviesShows {\n    display: flex;\n    flex-wrap: wrap;\n    flex-direction: row;\n    padding-top: 50px\n  }\n\n  .App-header h2 {\n    margin: 0;\n  }\n  \n  .movieShow {\n    padding: 5px 25px 10px 25px;\n    max-width: 25%;\n  }\n  \n  .movieShowDetail {\n    display: flex;\n    align-items: center;\n    margin: 0 auto;\n    padding-top: 50px;\n  }\n\n  .movieShowDetailText{\n    text-align: left;\n    margin-left: 30px;\n  }\n\n  .errorMessage {\n    margin: auto;\n    font-weight: bold;\n    color: rgb(161, 15, 15);\n  }\n  \n  \n  .search {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    justify-content: center;\n    margin-top: 10px;\n  }\n  \n  \n  input[type=\"submit\"] {\n    padding: 5px;\n    background-color: transparent;\n    color: #343a40;\n    border: 1px solid #343a40;\n    width: 80px;\n    margin-left: 5px;\n    cursor: pointer;\n  }\n  \n  \n  input[type=\"submit\"]:hover {\n    background-color: #282c34;\n    color: antiquewhite;\n  }\n  \n  \n  .search > input[type=\"text\"]{\n    width: 40%;\n    min-width: 170px;\n  }\n  \n  @media screen and (min-width: 694px) and (max-width: 915px) {\n    .movie {\n      max-width: 33%;\n    }\n  }\n  \n  @media screen and (min-width: 652px) and (max-width: 693px) {\n    .movie {\n      max-width: 50%;\n    }\n  }\n  \n  \n  @media screen and (max-width: 651px) {\n    .movie {\n      max-width: 100%;\n      margin: auto;\n    }\n  }", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

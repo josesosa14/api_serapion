@@ -9,6 +9,7 @@ const NO_PICTURE =
 const Detail = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentDetail, setCurrentDetail] = useState([]);
+  const [loading, setLoading] = useState(false);
   let { id } = useParams();
   useEffect(() => {
     detailFill(id);
@@ -16,22 +17,29 @@ const Detail = () => {
 
   const detailFill = (id) => {
     if (id != null) {
+      setErrorMessage(null);
+      setLoading(true);
       fetch(`/api/detail/${id}`).then(response => response.json())
         .then(jsonResponse => {
           if (jsonResponse.Error) {
             setErrorMessage(jsonResponse.Error);
+            setLoading(false);
 
           } else {
             setCurrentDetail(jsonResponse);
+            setLoading(false);
           }
-
+        }).catch(error => {
+          console.log(error);
         });
     }
   }
 
   const poster = currentDetail.poster === "N/A" ? NO_PICTURE : currentDetail.poster;
   return (
-    errorMessage ? (
+    loading && !errorMessage ? (
+      <div>loading...</div>
+    ) : errorMessage ? (
       <div className="errorMessage">{errorMessage}</div>
     ) : (
       <div className="movieShowDetail">
